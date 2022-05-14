@@ -1,0 +1,11 @@
+# Configuration
+toml~=0.10.2
+
+# Twitter API
+tweepy~=4.9.0
+
+# Data manipulation
+pandas~=1.4.2
+
+# Utilities
+termcolor~=1.1.0
