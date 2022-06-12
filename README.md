@@ -67,3 +67,4 @@ Use `classic.py` script to train, validate and test three models:
 We train and validate all three, then pick the best one for testing.
 
 <img src="./resources/classic/validation.png" alt="validation">
+<img src="./resources/classic/confusion-matrix.png" alt="confusion-matrix">
