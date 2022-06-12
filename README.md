@@ -66,4 +66,4 @@ Use `classic.py` script to train, validate and test three models:
 
 We train and validate all three, then pick the best one for testing.
 
-![Validation Comparison](resources/classic/validation.png | width=100)
+<img src="./resources/classic/validation.png" alt="validation">
