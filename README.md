@@ -52,10 +52,11 @@ After the normalization we take only tweets that have more than **20 tokens**.
 3. Thirdly we combine the two. We reduce the dimensionality of spacy embeddings from 300 to 20 (using PCA) and concatenate those with sentiment embeddings.
 4. Finally, we label combined embeddings (vectors of size 24) using KMeans clustering.
 
-<span style="color:#d24343">
-Unfortunately the clustering didn't really go two well. The classes seemed a bit random, and it is reflected in the achieved scores. 
-Hand labeling at least a part of dataset would probably help a lot, but I really didn't have time for that :( 
-</span>
+##### Note
+
+**Unfortunately the clustering didn't really go two well. The classes seemed a bit random, and it is reflected in the achieved scores. 
+Hand labeling at least a part of dataset would probably help a lot, but I really didn't have time for that :(**
+
 
 ## Classic Models
 
@@ -94,10 +95,13 @@ As we can see classic models did really poorly.
 
 ## Recurrent Models
 
-We test two recurrent model, LSTM-based and GRU-based. Below we provide:
+We test two recurrent model, LSTM-based and GRU-based. During training, we select model with the best validation score. 
+Below we provide:
 - Train and validation losses
 - Confusion Matrices on test data
-- Classification reports on test data
+- Classification reports on test 
+
+
 
 <table>
  <tr>
@@ -138,3 +142,35 @@ weighted avg       0.70      0.70      0.70      3336
    macro avg       0.70      0.70      0.70      3336
 weighted avg       0.70      0.70      0.70      3336
 ```
+
+
+Recurrent models did a bit better. 
+However looking at validation losses, we can clearly see how the model cannot generalize.
+This is caused most likely by lackluster tagging.
+
+## Transformers
+
+We use [allegro/herbert-base-cased](https://huggingface.co/allegro/herbert-base-cased) BERT based model. 
+During training, we select model with the best validation score.
+
+Below we provide:
+- Train and validation losses
+- Confusion Matrices on test data
+- Classification reports on test 
+
+<img src="./resources/transformer/validation.png" alt="transformer-validation">
+<img src="./resources/transformer/confusion_matrix.png" alt="transformer-confusion-matrix">
+
+```
+              precision    recall  f1-score   support
+
+    Negative       0.72      0.71      0.72      1514
+    Positive       0.76      0.77      0.77      1822
+
+    accuracy                           0.74      3336
+   macro avg       0.74      0.74      0.74      3336
+weighted avg       0.74      0.74      0.74      3336
+```
+
+The transformer model did unsurprisingly the best. Still, looking at train and validation losses graph we see lack of generalization.
+Again, this should be fixed with better tagging heuristic.
