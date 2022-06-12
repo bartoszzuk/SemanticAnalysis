@@ -83,6 +83,7 @@ class SentimentModel(nn.Module):
 
         self.embedding = nn.Embedding(vocabulary_size, embedding_dim)
 
+        # Just switch to LSTM
         self.encoder = nn.GRU(
             input_size=embedding_dim,
             hidden_size=hidden_dim,
