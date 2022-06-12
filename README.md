@@ -150,7 +150,7 @@ Recurrent models did a bit better.
 However looking at validation losses, we can clearly see how the model cannot generalize.
 This is caused most likely by lackluster tagging.
 
-## Transformers Models
+## Transformers
 
 We use [allegro/herbert-base-cased](https://huggingface.co/allegro/herbert-base-cased) BERT based model. 
 The script is in notebook form (see `transformer.ipynb`) because computing locally on CPU takes too long.
