@@ -54,7 +54,7 @@ After the normalization we take only tweets that have more than **20 tokens**.
 
 ##### Note
 
-**Unfortunately the clustering didn't really go two well. The classes seemed a bit random, and it is reflected in the achieved scores. 
+**Unfortunately the clustering didn't really go too well. The classes seemed a bit random, and it is reflected in the achieved scores. 
 Hand labeling at least a part of dataset would probably help a lot, but I really didn't have time for that :(**
 
 
