@@ -52,6 +52,8 @@ After the normalization we take only tweets that have more than **20 tokens**.
 3. Thirdly we combine the two. We reduce the dimensionality of spacy embeddings from 300 to 20 (using PCA) and concatenate those with sentiment embeddings.
 4. Finally, we label combined embeddings (vectors of size 24) using KMeans clustering.
 
+The outputs files were too big for GitHub repository. 
+
 ##### Note
 
 **Unfortunately the clustering didn't really go too well. The classes seemed a bit random, and it is reflected in the achieved scores. 

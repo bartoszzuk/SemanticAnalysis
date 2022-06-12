@@ -1,6 +1,3 @@
-# Configuration
-toml~=0.10.2
-
 # Twitter API
 tweepy~=4.9.0
 

@@ -7,11 +7,9 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from typing import List
 
-import toml
 from pandas import DataFrame
 from termcolor import colored
 from tweepy import Client, Tweet, Paginator
-
 
 columns = ['user', 'text', 'date', 'language']
 
@@ -88,7 +86,6 @@ def download(client: Client, config: DownloaderConfig) -> None:
     limit = compute_page_limit(config, downloaded=0)
 
     for user in config.users:
-
         paginator = Paginator(
             method=client.search_all_tweets,
             query=f'from:{user} -is:retweet lang:{config.tweets_language}',
@@ -102,9 +99,6 @@ def download(client: Client, config: DownloaderConfig) -> None:
 
 
 def create_downloader_config(arguments: Namespace) -> DownloaderConfig:
-    with open(arguments.config, 'r') as file:
-        config = toml.loads(file.read())['downloader']
-
     with open(arguments.users, 'r') as file:
         users = file.read().split()
 
@@ -112,8 +106,7 @@ def create_downloader_config(arguments: Namespace) -> DownloaderConfig:
         tweets_per_user=arguments.tweets,
         output_csv_path=arguments.output,
         verbose=arguments.verbose,
-        users=users,
-        **config
+        users=users
     )
 
 
