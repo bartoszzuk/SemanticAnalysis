@@ -14,6 +14,14 @@ graph LR;
     Tagger-->|labeled tweets|C[Transformer Models];
 ```
 
+## Setup
+
+```bash
+python -m virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
 
 ## Downloader
 
