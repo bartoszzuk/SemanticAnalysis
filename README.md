@@ -52,7 +52,7 @@ After the normalization we take only tweets that have more than **20 tokens**.
 3. Thirdly we combine the two. We reduce the dimensionality of spacy embeddings from 300 to 20 (using PCA) and concatenate those with sentiment embeddings.
 4. Finally, we label combined embeddings (vectors of size 24) using KMeans clustering.
 
-The embedding files are too big for GitHub and are not included in repository.
+The embedding files are too big for GitHub and are not included in repository. The csv files are in `resources/tagger` folder.
 
 ##### Note
 
