@@ -66,5 +66,33 @@ Use `classic.py` script to train, validate and test three models:
 
 We train and validate all three, then pick the best one for testing.
 
+#### Validation Losses
 <img src="./resources/classic/validation.png" alt="validation">
-<img src="./resources/classic/confusion-matrix.png" alt="confusion-matrix">
+
+<table>
+ <tr>
+    <td><img src="./resources/classic/confusion-matrix.png" alt="confusion-matrix"></td>
+    <td><img src="./resources/classic/roc.png" alt="roc"></td>
+ </tr>
+</table>
+
+
+#### Classification Report for KNeighborsClassifier
+
+```
+              precision    recall  f1-score   support
+
+    Negative       0.44      0.43      0.43      1514
+    Positive       0.54      0.55      0.55      1822
+
+    accuracy                           0.50      3336
+   macro avg       0.49      0.49      0.49      3336
+weighted avg       0.49      0.50      0.49      3336
+```
+
+As we can see classic models did really poorly.
+
+## Recurrent Models
+
+We test two recurrent model, LSTM-based and GRU-based.
+
