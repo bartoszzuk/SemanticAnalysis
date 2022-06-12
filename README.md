@@ -151,6 +151,7 @@ This is caused most likely by lackluster tagging.
 ## Transformers
 
 We use [allegro/herbert-base-cased](https://huggingface.co/allegro/herbert-base-cased) BERT based model. 
+The script is in notebook form (see `transformer.ipynb`) because computing locally on CPU takes too long.
 During training, we select model with the best validation score.
 
 Below we provide:

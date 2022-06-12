@@ -3,7 +3,7 @@ import math
 import os
 import time
 from argparse import Namespace, ArgumentParser
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from typing import List
 
@@ -13,17 +13,20 @@ from termcolor import colored
 from tweepy import Client, Tweet, Paginator
 
 
+columns = ['user', 'text', 'date', 'language']
+
+
 @dataclass(frozen=True)
 class DownloaderConfig:
     tweets_per_user: int
-    output_path: str
     users: List[str]
+    output_csv_path: str
 
-    token: str
-    tweets_per_page: int
-    tweets_language: str
-    columns: List[str]
-    verbose: bool
+    token: str = '<Input Your Token Here>'
+    tweets_per_page: int = 500
+    tweets_language: str = 'pl'
+    columns: List[str] = field(default_factory=lambda: columns)
+    verbose: bool = True
 
     @property
     def pages_per_user(self) -> int:
@@ -35,7 +38,6 @@ def parse_arguments() -> Namespace:
     parser.add_argument('-t', '--tweets', type=int, help='number of tweets per user to download')
     parser.add_argument('-u', '--users', help='path to .txt file with users (one per line)')
     parser.add_argument('-o', '--output', default='tweets.csv', help='path to output .csv file')
-    parser.add_argument('-c', '--config', default='pipeline.toml', help='path to .toml downloader config file')
     parser.add_argument('-v', '--verbose', action='store_true')
     return parser.parse_args()
 
@@ -45,12 +47,12 @@ def compute_page_limit(config: DownloaderConfig, downloaded: int) -> int:
 
 
 def handle_page(config: DownloaderConfig, tweets: List[Tweet], user: str) -> None:
-    initial = not os.path.exists(config.output_path)
+    initial = not os.path.exists(config.output_csv_path)
 
     records = [(user, tweet.text, tweet.created_at, tweet.lang) for tweet in tweets]
     records = DataFrame.from_records(records, columns=config.columns)
     records.to_csv(
-        config.output_path,
+        config.output_csv_path,
         index=False,
         header=initial,
         mode='a',
@@ -108,7 +110,7 @@ def create_downloader_config(arguments: Namespace) -> DownloaderConfig:
 
     return DownloaderConfig(
         tweets_per_user=arguments.tweets,
-        output_path=arguments.output,
+        output_csv_path=arguments.output,
         verbose=arguments.verbose,
         users=users,
         **config
@@ -124,7 +126,7 @@ def main(arguments: Namespace) -> None:
         print(f'Detected {len(config.users)} users ({config.tweets_per_user} tweets per user)')
         print('Starting download of', colored(f'{tweets_count} tweets', 'magenta', attrs=['bold']), '...')
 
-    path = config.output_path
+    path = config.output_csv_path
 
     if os.path.exists(path):
         decision = input('Output path already exists, overwrite it? [Y/N] ')
@@ -138,7 +140,7 @@ def main(arguments: Namespace) -> None:
     download(client, config)
 
     if config.verbose:
-        print(f'Saving results to {config.output_path} ...')
+        print(f'Saving results to {config.output_csv_path} ...')
         print(colored('Successfully finished download', 'green', attrs=['bold']))
 
 

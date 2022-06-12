@@ -7,5 +7,18 @@ tweepy~=4.9.0
 # Data manipulation
 pandas~=1.4.2
 
+# Data visualization
+matplotlib
+seaborn
+
+# Machine Learning
+sklearn
+torchtext
+torchdata
+
+# NLP
+spacy~=3.2.0
+https://github.com/explosion/spacy-models/releases/download/pl_core_news_md-3.2.0/pl_core_news_md-3.2.0.tar.gz#egg=pl_core_news_md
+
 # Utilities
 termcolor~=1.1.0

@@ -1,5 +1,0 @@
-[downloader]
-token = "<REPLACE WITH YOUR TOKEN>"
-tweets_per_page = 500
-tweets_language = "pl"
-columns = ['user', 'text', 'date', 'language']
