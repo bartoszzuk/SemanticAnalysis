@@ -64,9 +64,12 @@ Use `classic.py` script to train, validate and test three models:
 - KNeighborsClassifier
 - MultinomialNB
 
-We train and validate all three, then pick the best one for testing.
+We train and validate all three, then pick the best one for testing. Below we provide:
+- Validation scores for all three models
+- Confusion Matrix and Roc Curve for KNeighborsClassifier on test data
+- Full classification report for KNeighborsClassifier on test data
 
-#### Validation Losses
+
 <img src="./resources/classic/validation.png" alt="validation">
 
 <table>
@@ -75,9 +78,6 @@ We train and validate all three, then pick the best one for testing.
     <td><img src="./resources/classic/roc.png" alt="roc"></td>
  </tr>
 </table>
-
-
-#### Classification Report for KNeighborsClassifier
 
 ```
               precision    recall  f1-score   support
@@ -94,5 +94,47 @@ As we can see classic models did really poorly.
 
 ## Recurrent Models
 
-We test two recurrent model, LSTM-based and GRU-based.
+We test two recurrent model, LSTM-based and GRU-based. Below we provide:
+- Train and validation losses
+- Confusion Matrices on test data
+- Classification reports on test data
 
+<table>
+ <tr>
+    <td>GRU</td>
+    <td>LSTM</td>
+ </tr>
+ <tr>
+    <td><img src="./resources/recurrent/gru/validation.png" alt="gru-validation"></td>
+    <td><img src="./resources/recurrent/lstm/validation.png" alt="lstm-validation"></td>
+ </tr>
+ <tr>
+    <td><img src="./resources/recurrent/gru/confusion-matrix.png" alt="gru-confusion-matrix"></td>
+    <td><img src="./resources/recurrent/lstm/confusion-matrix.png" alt="lstm-confusion-matrix"></td>
+ </tr>
+</table>
+
+
+#### GRU Report
+```
+              precision    recall  f1-score   support
+
+    Negative       0.66      0.67      0.66      1514
+    Positive       0.72      0.72      0.72      1822
+
+    accuracy                           0.70      3336
+   macro avg       0.69      0.69      0.69      3336
+weighted avg       0.70      0.70      0.70      3336
+```
+
+#### LSTM Report
+```
+              precision    recall  f1-score   support
+
+    Negative       0.66      0.69      0.68      1514
+    Positive       0.73      0.71      0.72      1822
+
+    accuracy                           0.70      3336
+   macro avg       0.70      0.70      0.70      3336
+weighted avg       0.70      0.70      0.70      3336
+```
